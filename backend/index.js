@@ -14,7 +14,7 @@ mongoose.connect(
 );
 
 app.get("/", async (req, res) => {
-  const food = new FoodModel({ foodName: "orange", daysSinceAte: 3 });
+  const food = new FoodModel({ foodName: "apple", daysSinceAte: 3 });
   try {
     await food.save();
   } catch (err) {
