@@ -13,3 +13,8 @@ button {
   font-size: 1.2rem;
   margin: 0.5rem;
 }
+
+.card {
+  border: 1px solid black;
+  margin: 1rem;
+}

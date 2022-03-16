@@ -6,6 +6,7 @@ function App() {
   const [food, setFood] = useState("");
   const [days, setDays] = useState(0);
   const [foodList, setFoodList] = useState([]);
+  const [newFood, setNewFood] = useState("");
 
   useEffect(() => {
     Axios.get("http://localhost:3001/read").then((res) => {
@@ -17,6 +18,13 @@ function App() {
     Axios.post("http://localhost:3001/insert", {
       food: food,
       days: days,
+    });
+  };
+
+  const updateFood = (id) => {
+    Axios.put("http://localhost:3001/update", {
+      id: id,
+      newFood: newFood,
     });
   };
 
@@ -45,9 +53,19 @@ function App() {
       <h1>Food List</h1>
       {foodList.map((val) => {
         return (
-          <div key={val._id}>
+          <div key={val._id} className="card">
             <h3>{val.foodName}</h3>
             <h3>{val.daysSinceAte}</h3>
+            <input
+              type="text"
+              placeholder="new food name..."
+              onChange={(e) => {
+                setNewFood(e.target.value);
+              }}
+            />
+            <button onClick={() => updateFood(val._id)}>Update</button>
+            <br />
+            <button>Delete</button>
           </div>
         );
       })}
