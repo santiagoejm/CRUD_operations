@@ -28,6 +28,10 @@ function App() {
     });
   };
 
+  const deleteFood = (id) => {
+    Axios.delete(`http://localhost:3001/delete/${id}`);
+  };
+
   return (
     <div className="App">
       <h1>CRUD Operations</h1>
@@ -65,7 +69,7 @@ function App() {
             />
             <button onClick={() => updateFood(val._id)}>Update</button>
             <br />
-            <button>Delete</button>
+            <button onClick={() => deleteFood(val._id)}>Delete</button>
           </div>
         );
       })}
